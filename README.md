@@ -1,6 +1,6 @@
 # postman
 ## Resumo 
-#### Projeto desenvolvido com a linguagem Python, pensando em um sistema de entregas, onde você precisa passar por todos os diferentes endereços distintos e percorrer uma distância mínima. Alguns detalhes do projeto se encontram nos comentários do arquivo 'main.py'.
+#### Projeto desenvolvido com a linguagem Python, pensando em um sistema de entregas, onde você precisa passar por todos os endereços distintos e percorrer uma distância mínima. Alguns detalhes do projeto se encontram no arquivo de apresentação 'Explicação.pptx' e nos comentários do arquivo 'main.py'.
 
 ## Execução
 #### Passo 1: Clone o projeto em algum diretório da sua máquina utilizando o comando:
