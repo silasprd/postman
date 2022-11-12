@@ -7,4 +7,4 @@
 #### > cd code
 #### Passo 2: Execute o arquivo 'main.py' utilizando o comando:
 #### > py main.py
-#### Passo 3: O arquivo de saída será gerado no diretório 'generated-files/output.txt' ou será sobrescrito caso já exista.
+#### Passo 3: O arquivo de saída será gerado no diretório 'files/output.txt' ou será sobrescrito caso já exista.
