@@ -3,14 +3,14 @@
 '''
 Problema escolhido 
 - Carteiro: Consiste em encontrar a menor distância total para um entregador passar por todos os endereços 
-de entrega ao menos uma vez Esta solução pode ser aplicada em muitas áreas da logística, como na rota de carteiros 
+de entrega ao menos uma vez. Esta solução pode ser aplicada em muitas áreas da logística, como na rota de carteiros 
 ou em sistemas de coleta de lixo. 
-Foi utilizado para a solução deste problema os algoritmos de Dijkstra e Árvore Geradora Mínima.
+Foi utilizado para a solução deste problema o algoritmo da Árvore Geradora Mínima.
 
 Funcionamento:
-- Passando as informações corretas para o arquivo de entrada no diretório(generated-files/input.txt) o sistema 
+- Passando as informações corretas para o arquivo de entrada no diretório(files/input.txt) o sistema 
 inicia uma análise e calcula a menor distancia possível para percorrer, partindo de um ponto inicial, passando por 
-todos os pontos(arestas) informados. Por fim ele gera um arquivo de saída no diretório(generated-files/output.txt)
+todos os pontos(arestas) informados. Por fim ele gera um arquivo de saída no diretório(files/output.txt)
 com a conexão entre um ponto e outro e a distância mínima total encontrada.
 
 Padrão do arquivo de entrada:
@@ -27,45 +27,45 @@ sobrescreverá o arquivo de saída.
 Alguns exemplos de entrada: 
 
 7 12
-0 1 2 
-1 5 7
-1 3 4
-2 3 5 
-2 4 7
-3 5 8
-3 6 3
-4 3 4
-4 5 2
-5 3 8
+0 1 7 
+1 3 1
+3 2 3
+2 4 2 
+4 6 2
+6 5 8
 5 5 3
+5 4 4
+5 1 1
+1 6 8
+4 1 3
 
 ------
 
 9 14
-0 1 11
-1 7 5
-1 2 8
-2 7 3
-2 3 7
-3 5 4
-3 8 2
-4 4 13
-4 5 14
+0 1 1
+1 7 11
+7 2 8
+2 3 3
+3 8 7
+8 5 4
+5 4 2
+4 4 1
+4 5 2
 5 5 9    
 5 6 2
 6 7 1
 6 8 6
-7 9 10
+8 9 1
 
 ------
 
 5 9
-0 1 0 
-1 4 4
-1 3 4
-2 1 1 
+1 4 5 
+4 0 4
+0 3 4
+3 2 1 
 2 2 5
-3 3 3
+2 3 3
 
 Variáveis principais:
 x = número vértices
@@ -78,7 +78,7 @@ points =
 distance = distância percorrida
 result = distância total mínima encontrada
 tree = lista com as conexões que gerarão um menor custo
-output = gera o resultado no arquivo outputFile.txt
+output = gera o resultado no arquivo output.txt
 
 '''
 
@@ -90,7 +90,7 @@ import heapq
 
 def main():
     #variável utilizada para verificar se o arquivo está ou não vazio através da função empty()
-    readingFile = readInput.empty('generated-files/input.txt')
+    readingFile = readInput.empty('../files/input.txt')
 
     #abre e lê o arquivo de entrada, e gera o arquivo de saída, se o arquivo não for vazio
     if readingFile == False:
@@ -128,12 +128,12 @@ def main():
 
         output = readInput.output()
         output =(output)  
-        output.write('Ordem dos pontos de entrega para percorrer a menor distância possível: ')  
+        output.write('Lista com a ligação de um ponto a outro para percorrer a menor distância possível: ')  
         output.write("\n")
         output.write(str(tree))  
         output.write("\n")
         output.write("\n")
-        output.write('Distância total: ' + str(result) + 'Km')  
+        output.write('Distância total mínima encontrada: ' + str(result) + 'Km')  
         output.close()
     #se a entrada estiver vazia, gera o arquivo de saída com a frase 'O arquivo de saída está vazio'
     else:

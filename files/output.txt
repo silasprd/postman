@@ -1,0 +1,4 @@
+Lista com a ligação de um ponto a outro para percorrer a menor distância possível: 
+[(4, 0), (0, 3), (3, 2), (4, 1)]
+
+Distância total mínima encontrada: 14Km
