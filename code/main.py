@@ -2,17 +2,70 @@
 
 '''
 Problema escolhido 
-- Carteiro: Consiste em encontrar um trajeto fechado de distância mínima que percorre
-todas arestas de um grafo ao menos uma vez. Esta solução pode ser aplicada em muitas áreas da logística,
-como na rota de carteiros. Foi utilizado para a solução deste problema os algoritmos de Dijkstra e Arvore Geradora Mínima.
+- Carteiro: Consiste em encontrar a menor distância total para um entregador passar por todos os endereços 
+de entrega ao menos uma vez Esta solução pode ser aplicada em muitas áreas da logística, como na rota de carteiros 
+ou em sistemas de coleta de lixo. 
+Foi utilizado para a solução deste problema os algoritmos de Dijkstra e Árvore Geradora Mínima.
 
 Funcionamento:
-- Passando as informações corretas para o arquivo de entrada(inputFile.txt) o sistema inicia uma análise e 
-calcula a menor distancia possível para percorrer, partindo de um ponto inicial, 
-e passando por todos os pontos(arestas) informados. Quando o algoritmo recebe as informações do grafo, 
-a partir do ponto inicial, ele analisa a menor distância para conectar todas as vértices através 
-dos valores das arestas passadas no arquivo de entrada. Por fim ele gera um arquivo de saída 
-com a conexão entre os pontos e a distância mínima encontrada.
+- Passando as informações corretas para o arquivo de entrada no diretório(generated-files/input.txt) o sistema 
+inicia uma análise e calcula a menor distancia possível para percorrer, partindo de um ponto inicial, passando por 
+todos os pontos(arestas) informados. Por fim ele gera um arquivo de saída no diretório(generated-files/output.txt)
+com a conexão entre um ponto e outro e a distância mínima total encontrada.
+
+Padrão do arquivo de entrada:
+Os dados do arquivo deverão ser na forma de um grafo não direcionado, onde os valores passados serão a conexão 
+de um ponto a outro e seu custo, sendo lidos da seguinte forma:
+A primeira linha será o número de vértices(x) e arestas(y).
+As demais linhas serão os valores do ponto 1(p1), do ponto 2(p2) e a distância percorrida(distance).
+
+Padrão do arquivo de saída:
+O arquivo de saída é gerado assim que o projeto é executado, passando todas as conexões de um ponto ao outro 
+em uma lista, e a distância mínima total encontrada. Ao executar o projeto novamente, ele apenas 
+sobrescreverá o arquivo de saída.
+
+Alguns exemplos de entrada: 
+
+7 12
+0 1 2 
+1 5 7
+1 3 4
+2 3 5 
+2 4 7
+3 5 8
+3 6 3
+4 3 4
+4 5 2
+5 3 8
+5 5 3
+
+------
+
+9 14
+0 1 11
+1 7 5
+1 2 8
+2 7 3
+2 3 7
+3 5 4
+3 8 2
+4 4 13
+4 5 14
+5 5 9    
+5 6 2
+6 7 1
+6 8 6
+7 9 10
+
+------
+
+5 9
+0 1 0 
+1 4 4
+1 3 4
+2 1 1 
+2 2 5
+3 3 3
 
 Variáveis principais:
 x = número vértices
@@ -27,63 +80,6 @@ result = distância total mínima encontrada
 tree = lista com as conexões que gerarão um menor custo
 output = gera o resultado no arquivo outputFile.txt
 
-Padrão do arquivo de entrada:
-Os dados do arquivo deverão ser na forma de um grafo conectado, valorado e não direcionado, onde esses dados
-serão a conexão de um ponto a outro e seu custo, sendo lidos da seguinte forma:
-A primeira linha será o número de vértices(x) e arestas(y).
-As demais linhas serão os valores do ponto 1(p1), do ponto 2(p2) e a distância percorrida(distance).
-
-Alguns exemplos de entrada: 
-
-7 12
-3 1 2 
-3 5 7
-5 3 4
-2 3 5 
-3 4 7
-2 5 8
-2 6 3
-3 3 4
-4 5 2
-0 3 8
-5 5 3
-
-------
-
-9 14
-0 1 11
-3 7 5
-1 2 8
-3 7 3
-2 3 7
-3 5 4
-3 8 2
-5 4 13
-3 5 14
-4 5 9    
-5 6 2
-3 7 1
-6 8 6
-7 9 10
-
-------
-
-7 15
-0 1 0 
-0 4 4
-2 3 4
-1 1 1 
-0 2 5
-2 3 3
-1 6 3
-3 3 4
-2 5 2
-4 5 3
-5 5 1
-
-O arquivo de saída é gerado assim que o projeto é executado, e nas próximas vezes que o
-projeto for executado, apenas sobrescreverá o arquivo de saída.
-
 '''
 
 
@@ -93,13 +89,16 @@ import heapq
 
 
 def main():
-    readingFile = readInput.empty('input.txt')
+    #variável utilizada para verificar se o arquivo está ou não vazio através da função empty()
+    readingFile = readInput.empty('generated-files/input.txt')
 
-
+    #abre e lê o arquivo de entrada, e gera o arquivo de saída, se o arquivo não for vazio
     if readingFile == False:
 
+        #executa a função openFile() para abrir o arquivo
         x,y,heap,values = readInput.openFile()
 
+        #executa a função readFile() para ler o arquivo
         p1, p2, distance, values, init= readInput.readFile()
 
         for (p, distance) in values[init]:
@@ -136,6 +135,7 @@ def main():
         output.write("\n")
         output.write('Distância total: ' + str(result) + 'Km')  
         output.close()
+    #se a entrada estiver vazia, gera o arquivo de saída com a frase 'O arquivo de saída está vazio'
     else:
         output = readInput.output()
         output = (output)  

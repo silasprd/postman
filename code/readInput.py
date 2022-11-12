@@ -2,9 +2,10 @@ import heapq
 import random
 import os
 
+#função para abrir o arquivo de entrada com o método open()
 def openFile():
     heap = []
-    with open('input.txt', encoding='utf-8') as fp:  
+    with open('generated-files/input.txt', encoding='utf-8') as fp:  
         for i, line in enumerate(fp):
             if i == 0:
                 vert1, vert2 = line.split()
@@ -16,12 +17,12 @@ def openFile():
     values = [[] * vert1 for i in range(vert1)]
     return vert1, vert2, heap, values
 
-
+#função para ler todas as linhas do arquivo de entrada 
 def readFile():
     x, y, heap, values = openFile()
 
     for j in range(y):
-        with open('input.txt') as fp:  
+        with open('generated-files/input.txt') as fp:  
             for i, line in enumerate(fp):
                 if i >= 1 and i <= j:  
                     p1, p2, distance = line.split()
@@ -34,13 +35,14 @@ def readFile():
 
     return p1, p2, distance, values, init
 
-
+#função para gerar o arquivo de saída
 def output():
 
-    output = open('output.txt', 'w', encoding='utf-8')  
+    output = open('generated-files/output.txt', 'w', encoding='utf-8')  
 
     return output
 
+#função para verificar se o arquivo está vazio
 def empty(path):
     return os.stat(path).st_size==0
 
